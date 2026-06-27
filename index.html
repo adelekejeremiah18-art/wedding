@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love & Jerry — Wedding 2027</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
+
+  :root {
+    --ivory: #FAF7F0;
+    --gold: #C8A96E;
+    --dark: #1A1A18;
+    --mid: #5A5854;
+    --light: #A0988E;
+    --border: #D4D0C8;
+    --surface: #F5F2EC;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    background: var(--ivory);
+    color: var(--dark);
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250,247,240,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+  }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--dark);
+  }
+  .nav-brand em { font-style: italic; color: var(--gold); }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--dark); }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 80px 32px 64px;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .hero-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 20px;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--dark);
+    margin-bottom: 12px;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--light);
+    margin-bottom: 32px;
+  }
+  .hero-pills {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .pill {
+    font-size: 11px;
+    padding: 5px 16px;
+    border-radius: 20px;
+    border: 0.5px solid var(--border);
+    color: var(--mid);
+    background: white;
+  }
+  .pill.gold { border-color: var(--gold); color: #8a6a20; background: #fdf8ee; }
+
+  /* ── PAGE ── */
+  .page { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+  .section { padding: 64px 0 0; }
+  .section-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: var(--border);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--dark);
+    margin-bottom: 32px;
+  }
+
+  /* ── BUDGET METRICS ── */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .metric { background: white; padding: 20px 14px; text-align: center; }
+  .metric-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--dark);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .metric-val.green { color: #3a7a3a; }
+  .metric-val.amber { color: #b07020; }
+  .metric-label { font-size: 10px; color: var(--light); }
+
+  /* ── VENUE TABLE ── */
+  .venue-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+  .venue-table thead tr { background: var(--surface); border-bottom: 0.5px solid var(--border); }
+  .venue-table th {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--light);
+    padding: 10px 16px;
+    text-align: left;
+  }
+  .venue-table th.r { text-align: right; }
+  .venue-table tbody tr { border-bottom: 0.5px solid #F0EDE6; }
+  .venue-table tbody tr:last-child { border-bottom: none; }
+  .venue-table tbody tr.top { background: #fafcfa; }
+  .venue-table td { padding: 14px 16px; vertical-align: middle; }
+  .venue-table td.r { text-align: right; }
+
+  .tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    margin-bottom: 3px;
+  }
+  .t-rec   { background: #eef4ee; color: #3a6a3a; }
+  .t-prem  { background: #f0eef8; color: #5a4a8a; }
+  .t-val   { background: #f0f8ee; color: #2a6a2a; }
+  .t-new   { background: #eef6f4; color: #2a6a5a; }
+  .t-tbd   { background: #f8f4ee; color: #8a6020; }
+  .t-wait  { background: #f4f4f4; color: #888880; }
+
+  .vname {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--dark);
+    line-height: 1.1;
+  }
+  .vloc { font-size: 10px; color: var(--light); margin-top: 1px; }
+  .price-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 300;
+  }
+  .price-note { font-size: 10px; color: var(--light); display: block; }
+  .headroom { font-size: 12px; font-weight: 500; }
+  .headroom.g { color: #3a7a3a; }
+  .headroom.a { color: #b07020; }
+  .headroom.r { color: #a04040; }
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 4px; }
+  .dg { background: #5a9a5a; }
+  .da { background: #c09040; }
+  .dr { background: #b0a0a0; }
+  .status-txt { font-size: 11px; color: var(--mid); }
+
+  /* ── NEXT STEPS ── */
+  .next-box {
+    background: white;
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 32px;
+  }
+  .next-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 12px 20px;
+    border-bottom: 0.5px solid #F0EDE6;
+    font-size: 12px;
+    gap: 16px;
+  }
+  .next-row:last-child { border-bottom: none; }
+  .next-label { color: var(--mid); flex-shrink: 0; }
+  .next-val { font-weight: 500; color: var(--dark); text-align: right; }
+  .next-val.g { color: #3a7a3a; }
+  .next-val.a { color: #a07030; }
+
+  /* ── THEME SECTION ── */
+  .theme-hero {
+    background: white;
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+  .theme-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+  .theme-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--light);
+    margin-bottom: 24px;
+  }
+  .split-bar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; margin-bottom: 6px; }
+  .s-it { background: var(--gold); }
+  .s-af { background: #8B4513; }
+  .split-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    margin-bottom: 24px;
+  }
+  .sl-it { color: #8a7030; font-weight: 500; }
+  .sl-af { color: #8B4513; font-weight: 500; }
+
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .pillar {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 18px;
+    border: 0.5px solid var(--border);
+  }
+  .pillar-icon { font-size: 18px; margin-bottom: 8px; }
+  .pillar-name { font-size: 13px; font-weight: 500; color: var(--dark); margin-bottom: 6px; }
+  .pillar-desc { font-size: 11px; color: var(--mid); line-height: 1.6; }
+
+  /* ── PALETTE VOTING ── */
+  .palette-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
+
+  .palette-card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  .palette-card:hover { border-color: var(--gold); }
+  .palette-card.selected {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(200,169,110,0.15);
+  }
+
+  .pc-swatches { display: flex; height: 64px; }
+  .pc-sw { flex: 1; }
+
+  .pc-body { padding: 20px 24px; }
+  .pc-num {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 4px;
+  }
+  .pc-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--dark);
+    margin-bottom: 2px;
+  }
+  .pc-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--light);
+    margin-bottom: 16px;
+  }
+
+  .pc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .pc-col { padding: 0; }
+  .pc-col:first-child { padding-right: 16px; border-right: 0.5px solid var(--border); margin-right: 16px; }
+  .pc-col-title {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 8px;
+  }
+  .pc-item {
+    font-size: 11px;
+    color: var(--mid);
+    padding: 4px 0;
+    border-bottom: 0.5px solid #F0EDE6;
+    display: flex;
+    gap: 8px;
+    line-height: 1.4;
+  }
+  .pc-item:last-child { border-bottom: none; }
+  .pc-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+
+  .pc-verdict {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border-radius: 4px;
+    font-size: 11px;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+  .pc-verdict strong { color: var(--dark); font-weight: 500; }
+
+  .vote-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 10px 20px;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    background: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--mid);
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    justify-content: center;
+  }
+  .vote-btn:hover {
+    border-color: var(--gold);
+    color: #8a6a20;
+    background: #fdf8ee;
+  }
+  .palette-card.selected .vote-btn {
+    border-color: var(--gold);
+    background: #fdf8ee;
+    color: #7a5a10;
+  }
+  .vote-icon { font-size: 14px; }
+
+  /* ── SELECTED BANNER ── */
+  .selected-banner {
+    display: none;
+    background: #fdf5e0;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .selected-banner.show { display: block; }
+  .sb-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+  .sb-sub { font-size: 12px; color: var(--mid); }
+
+  /* ── TIMELINE ── */
+  .timeline-row { display: flex; gap: 0; margin-top: 24px; }
+  .tl-item { flex: 1; text-align: center; position: relative; }
+  .tl-item::after {
+    content: '';
+    position: absolute;
+    top: 13px;
+    left: 50%;
+    right: -50%;
+    height: 0.5px;
+    background: var(--border);
+  }
+  .tl-item:last-child::after { display: none; }
+  .tl-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 0 auto 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .tl-time { font-size: 9px; color: var(--light); }
+  .tl-name { font-size: 11px; font-weight: 500; color: var(--dark); margin-top: 2px; }
+  .tl-vibe { font-size: 10px; color: var(--mid); margin-top: 2px; font-style: italic; }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    margin: 80px 0 0;
+    border-top: 0.5px solid var(--border);
+    padding: 40px 32px 60px;
+  }
+  .footer em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--mid);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .footer p { font-size: 10px; color: var(--light); letter-spacing: 0.06em; line-height: 2; }
+
+  @media (max-width: 640px) {
+    .hero-title { font-size: 40px; }
+    .nav-links { display: none; }
+    .metrics { grid-template-columns: repeat(3, 1fr); }
+    .pillars { grid-template-columns: 1fr; }
+    .pc-grid { grid-template-columns: 1fr; }
+    .pc-col:first-child { border-right: none; margin-right: 0; padding-right: 0; border-bottom: 0.5px solid var(--border); padding-bottom: 12px; margin-bottom: 12px; }
+    .venue-table th:nth-child(n+4), .venue-table td:nth-child(n+4) { display: none; }
+    .timeline-row { flex-wrap: wrap; gap: 12px; }
+    .tl-item::after { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand"><em>Love</em> & Jerry</div>
+  <div class="nav-links">
+    <a href="#venues">Venues</a>
+    <a href="#theme">Theme</a>
+    <a href="#palette">Palette Vote</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Wedding Planning · Live Dashboard · Updated 27 June 2026</p>
+  <h1 class="hero-title"><em>Love</em> & Jerry</h1>
+  <p class="hero-date">7 July 2027 · Italy · Le Marche & Abruzzo</p>
+  <div class="hero-pills">
+    <span class="pill">~120 guests</span>
+    <span class="pill">Budget €30,000</span>
+    <span class="pill">Site visits: 18–21 Aug 2026</span>
+    <span class="pill gold">€0 committed — all options open</span>
+    <span class="pill">Yoruba × Igbo × Italian</span>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- VENUES -->
+  <div class="section" id="venues">
+    <div class="section-label">Part 01 — Venue Shortlist</div>
+    <h2 class="section-title">6 venues · 5 quotes received</h2>
+
+    <div class="metrics">
+      <div class="metric"><div class="metric-val">€30,000</div><div class="metric-label">Total budget</div></div>
+      <div class="metric"><div class="metric-val green">€0</div><div class="metric-label">Committed</div></div>
+      <div class="metric"><div class="metric-val green">€30,000</div><div class="metric-label">Remaining</div></div>
+      <div class="metric"><div class="metric-val">~120</div><div class="metric-label">Guests</div></div>
+      <div class="metric"><div class="metric-val">6</div><div class="metric-label">Venues</div></div>
+    </div>
+
+    <table class="venue-table">
+      <thead>
+        <tr>
+          <th style="width:26%">Venue</th>
+          <th class="r" style="width:12%">€ / head</th>
+          <th class="r" style="width:14%">Total 120 pax</th>
+          <th class="r" style="width:12%">vs €30k</th>
+          <th style="width:13%">Date 7/7/27</th>
+          <th style="width:23%">Key notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="top">
+          <td><div class="tag t-rec">Top pick</div><div class="vname">SeeBay Hotel</div><div class="vloc">Portonovo, Le Marche</div></td>
+          <td class="r"><span class="price-big">€150</span><span class="price-note">IVA incl.</span></td>
+          <td class="r">~€21,500</td>
+          <td class="r"><span class="headroom g">+€8,500</span></td>
+          <td><span class="dot dg"></span><span class="status-txt">Confirmed ✓</span></td>
+          <td style="font-size:11px;color:var(--mid)">Sea views · 1-Michelin-star prova menu · wine pairing incl.</td>
+        </tr>
+        <tr>
+          <td><div class="tag t-prem">Premium</div><div class="vname">Pagus Montepagano</div><div class="vloc">Roseto degli Abruzzi, Abruzzo</div></td>
+          <td class="r"><span class="price-big">€165</span><span class="price-note">€150 +IVA</span></td>
+          <td class="r">~€23,500</td>
+          <td class="r"><span class="headroom g">+€6,500</span></td>
+          <td><span class="dot da"></span><span class="status-txt">Pending</span></td>
+          <td style="font-size:11px;color:var(--mid)">Medieval borgo · cigar bar · live cheeses</td>
+        </tr>
+        <tr>
+          <td><div class="tag t-val">Best value</div><div class="vname">Cantina Langelina</div><div class="vloc">Corinaldo, Le Marche</div></td>
+          <td class="r"><span class="price-big">€115</span><span class="price-note">IVA incl.</span></td>
+          <td class="r">~€18,800</td>
+          <td class="r"><span class="headroom g">+€11,200</span></td>
+          <td><span class="dot da"></span><span class="status-txt">Pending</span></td>
+          <td style="font-size:11px;color:var(--mid)">10+ food stations · 120–150 cap confirmed</td>
+        </tr>
+        <tr>
+          <td><div class="tag t-new">New — 27 Jun</div><div class="vname">La Collina dei Cavalieri</div><div class="vloc">Belvedere Ostrense, Le Marche</div></td>
+          <td class="r"><span class="price-big">€95</span><span class="price-note">from Luana</span></td>
+          <td class="r">~€14,400</td>
+          <td class="r"><span class="headroom g">+€15,600</span></td>
+          <td><span class="dot da"></span><span class="status-txt">Pending</span></td>
+          <td style="font-size:11px;color:var(--mid)">Bio agriturismo · pool · hills near Jesi</td>
+        </tr>
+        <tr>
+          <td><div class="tag t-tbd">Quote pending</div><div class="vname">Villa Estea</div><div class="vloc">Abruzzo — private villa</div></td>
+          <td class="r"><span class="price-big">€150–180</span><span class="price-note">estimated</span></td>
+          <td class="r">~€31,000+</td>
+          <td class="r"><span class="headroom r">−€1,000+</span></td>
+          <td><span class="dot da"></span><span class="status-txt">Pending</span></td>
+          <td style="font-size:11px;color:var(--mid)">Highest elegance · site visit 18–21 Aug</td>
+        </tr>
+        <tr>
+          <td><div class="tag t-wait">Awaiting reply</div><div class="vname">Villa Koch</div><div class="vloc">Recanati, Le Marche</div></td>
+          <td class="r"><span class="price-big">—</span><span class="price-note">call booked</span></td>
+          <td class="r">TBC</td>
+          <td class="r"><span class="headroom" style="color:var(--light)">TBC</span></td>
+          <td><span class="dot dr"></span><span class="status-txt">Call booked</span></td>
+          <td style="font-size:11px;color:var(--mid)">Neoclassical villa · capacity to confirm</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="next-box">
+      <div class="next-row"><span class="next-label">Current front-runner</span><span class="next-val g">SeeBay Hotel — date confirmed, €8,500 headroom</span></div>
+      <div class="next-row"><span class="next-label">Site visits</span><span class="next-val g">18–21 August 2026</span></div>
+      <div class="next-row"><span class="next-label">Next call</span><span class="next-val a">Villa Koch — booked</span></div>
+      <div class="next-row"><span class="next-label">Decision target</span><span class="next-val a">September 2026</span></div>
+    </div>
+  </div>
+
+  <!-- THEME -->
+  <div class="section" id="theme">
+    <div class="section-label">Part 02 — Wedding Theme</div>
+    <h2 class="section-title">Dolce Vita — African Soul</h2>
+
+    <div class="theme-hero">
+      <div class="theme-name">Dolce Vita — African Soul</div>
+      <div class="theme-sub">Italian elegance as the foundation · Nigerian royalty as the heartbeat</div>
+
+      <div class="split-bar">
+        <div class="s-it" style="flex:60"></div>
+        <div class="s-af" style="flex:40"></div>
+      </div>
+      <div class="split-labels">
+        <span class="sl-it">60% Italian elegance</span>
+        <span class="sl-af">40% Nigerian soul (Yoruba × Igbo)</span>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-icon">🏛️</div>
+          <div class="pillar-name">Italian canvas</div>
+          <div class="pillar-desc">White florals, candlelight, olive trees, linen tablecloths, Italian wines. The venue and setting speak Italian — refined, timeless, cinematic.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">👑</div>
+          <div class="pillar-name">Nigerian royalty</div>
+          <div class="pillar-desc">Protea, kente accents, brass lanterns, bold statement pieces. Yoruba gold meets Igbo green — two cultures celebrated without compromise.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🎵</div>
+          <div class="pillar-name">Uncontainable joy</div>
+          <div class="pillar-desc">Aperitivo with live guitar · dinner with Afrobeats · party with DJ that has no mercy. 120 people who will talk about this night for years.</div>
+        </div>
+      </div>
+
+      <div class="timeline-row" style="margin-top:28px">
+        <div class="tl-item"><div class="tl-dot" style="background:var(--gold)"></div><div class="tl-time">17:00</div><div class="tl-name">Ceremony</div><div class="tl-vibe">80% Italian</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:#8B4513"></div><div class="tl-time">18:30</div><div class="tl-name">Aperitivo</div><div class="tl-vibe">Live guitar</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:#3A5A3A"></div><div class="tl-time">20:00</div><div class="tl-name">Dinner</div><div class="tl-vibe">60/40 balance</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:var(--gold)"></div><div class="tl-time">22:30</div><div class="tl-name">First dance</div><div class="tl-vibe">No rules</div></div>
+        <div class="tl-item"><div class="tl-dot" style="background:#1A1A18"></div><div class="tl-time">23:00</div><div class="tl-name">The party</div><div class="tl-vibe">80% Nigerian 🔥</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PALETTE VOTE -->
+  <div class="section" id="palette">
+    <div class="section-label">Part 03 — Palette Vote</div>
+    <h2 class="section-title">Love, choose your palette ❤️</h2>
+
+    <div id="selectedBanner" class="selected-banner">
+      <div class="sb-title" id="selectedName">—</div>
+      <div class="sb-sub">This is the one ❤️ — Jerry will be notified</div>
+    </div>
+
+    <div class="palette-grid">
+
+      <!-- P1: MIDNIGHT ROYALE -->
+      <div class="palette-card" id="p1" onclick="selectPalette('p1','Midnight Royale')">
+        <div class="pc-swatches">
+          <div class="pc-sw" style="background:#0A0A12; flex:1.5"></div>
+          <div class="pc-sw" style="background:#C8A96E"></div>
+          <div class="pc-sw" style="background:#FAF7F0; border-right:0.5px solid #D4D0C8"></div>
+          <div class="pc-sw" style="background:#8B1A1A"></div>
+          <div class="pc-sw" style="background:#3D5A2A"></div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-num">Option 01</div>
+          <div class="pc-name">Midnight Royale</div>
+          <div class="pc-sub">The wedding nobody else has the courage to do</div>
+          <div class="pc-grid">
+            <div class="pc-col">
+              <div class="pc-col-title">Decor & venue</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#0A0A12"></div>Midnight tablecloths with gold — never seen in Italy</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#C8A96E"></div>Tall gold candelabras, hundreds of candles</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#FAF7F0"></div>White & cream florals — dramatic contrast</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#3D5A2A"></div>Dark foliage, olive, pine — Italian depth</div>
+            </div>
+            <div class="pc-col">
+              <div class="pc-col-title">Your outfits</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#0A0A12"></div>Jerry: midnight tuxedo with gold lapels</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#FAF7F0"></div>Love: ivory structured gown, long</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#C8A96E"></div>Gold accessories — gold gele for Love</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#8B1A1A"></div>Bordeaux & white bouquet — theatrical</div>
+            </div>
+          </div>
+          <div class="pc-verdict"><strong>Why it works:</strong> Midnight/black is Yoruba royal. Gold is Nigeria. In Italy it is revolutionary — nobody does dark tables. The photos will look like a magazine cover. <strong>Note:</strong> guests need to understand the vision — communicate clearly on the invitation.</div>
+          <button class="vote-btn" onclick="event.stopPropagation(); selectPalette('p1','Midnight Royale')">
+            <span class="vote-icon" id="icon-p1">🤍</span>
+            <span id="label-p1">This is the one</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- P2: ORO DI LAGOS -->
+      <div class="palette-card" id="p2" onclick="selectPalette('p2','Oro di Lagos')">
+        <div class="pc-swatches">
+          <div class="pc-sw" style="background:#C8A96E; flex:1.5"></div>
+          <div class="pc-sw" style="background:#FAF7F0; border-right:0.5px solid #D4D0C8"></div>
+          <div class="pc-sw" style="background:#8B4513"></div>
+          <div class="pc-sw" style="background:#2A4A1A"></div>
+          <div class="pc-sw" style="background:#3A1A00"></div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-num">Option 02</div>
+          <div class="pc-name">Oro di Lagos</div>
+          <div class="pc-sub">Pure Nigerian joy — the richest, most celebratory palette</div>
+          <div class="pc-grid">
+            <div class="pc-col">
+              <div class="pc-col-title">Decor & venue</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#FAF7F0"></div>Ivory tablecloths, aso-oke gold runner</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#C8A96E"></div>Woven baskets, gold, protea centrepieces</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#8B4513"></div>Brass lanterns — warm African glow</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#2A4A1A"></div>Banana leaves, palms, exotic green</div>
+            </div>
+            <div class="pc-col">
+              <div class="pc-col-title">Your outfits</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#FAF7F0"></div>Love: pure white gown, long veil</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#C8A96E"></div>Gold embroidery details on gown</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#3A1A00"></div>Jerry: ebony tuxedo, gold pocket square</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#8B4513"></div>Copper & gold gele for Love — statement</div>
+            </div>
+          </div>
+          <div class="pc-verdict"><strong>Why it works:</strong> The most celebratory of all five — gold dominates as in the great Lagos/Abuja parties. Works perfectly with Italian July light. Italian guests will feel they are somewhere magical. <strong>Perfect for:</strong> SeeBay or Pagus.</div>
+          <button class="vote-btn" onclick="event.stopPropagation(); selectPalette('p2','Oro di Lagos')">
+            <span class="vote-icon" id="icon-p2">🤍</span>
+            <span id="label-p2">This is the one</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- P3: SMERALDO IMPERIALE -->
+      <div class="palette-card" id="p3" onclick="selectPalette('p3','Smeraldo Imperiale')">
+        <div class="pc-swatches">
+          <div class="pc-sw" style="background:#0D3B2E; flex:1.5"></div>
+          <div class="pc-sw" style="background:#C8A96E"></div>
+          <div class="pc-sw" style="background:#FAF7F0; border-right:0.5px solid #D4D0C8"></div>
+          <div class="pc-sw" style="background:#1A1A1A"></div>
+          <div class="pc-sw" style="background:#A8C8A0"></div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-num">Option 03</div>
+          <div class="pc-name">Smeraldo Imperiale</div>
+          <div class="pc-sub">The most elegant 2027 palette — wins every best-dressed list</div>
+          <div class="pc-grid">
+            <div class="pc-col">
+              <div class="pc-col-title">Decor & venue</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#0D3B2E"></div>Emerald velvet chairs — opulent</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#C8A96E"></div>Gold everywhere: candles, cutlery, frames</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#FAF7F0"></div>White roses + deep emerald foliage</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#A8C8A0"></div>Eucalyptus, olive, Italian herbs</div>
+            </div>
+            <div class="pc-col">
+              <div class="pc-col-title">Your outfits</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#FAF7F0"></div>Love: white gown with emerald & gold sash</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#0D3B2E"></div>Bouquet: white roses & emerald green</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#1A1A1A"></div>Jerry: black tuxedo, emerald tie</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#C8A96E"></div>Emerald & gold jewels for Love</div>
+            </div>
+          </div>
+          <div class="pc-verdict"><strong>Why it works:</strong> Emerald green is the Igbo colour — it is Love's heritage without needing to explain it. In 2027 the trend pushes toward richer, deeper forest greens for even more drama. Absolute elegance, timeless, photogenic. <strong>Jerry's favourite.</strong></div>
+          <button class="vote-btn" onclick="event.stopPropagation(); selectPalette('p3','Smeraldo Imperiale')">
+            <span class="vote-icon" id="icon-p3">🤍</span>
+            <span id="label-p3">This is the one</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- P4: CHAMPAGNE & BORGOGNA -->
+      <div class="palette-card" id="p4" onclick="selectPalette('p4','Champagne & Borgogna')">
+        <div class="pc-swatches">
+          <div class="pc-sw" style="background:#E8D5A0; flex:1.5"></div>
+          <div class="pc-sw" style="background:#6B1A2A"></div>
+          <div class="pc-sw" style="background:#FAF7F0; border-right:0.5px solid #D4D0C8"></div>
+          <div class="pc-sw" style="background:#C8A96E"></div>
+          <div class="pc-sw" style="background:#2C4A2C"></div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-num">Option 04</div>
+          <div class="pc-name">Champagne & Borgogna</div>
+          <div class="pc-sub">Silent luxury — the palette of true connoisseurs</div>
+          <div class="pc-grid">
+            <div class="pc-col">
+              <div class="pc-col-title">Decor & venue</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#E8D5A0"></div>Champagne linen — texture, not flat colour</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#6B1A2A"></div>Burgundy peonies as the floral statement</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#C8A96E"></div>Ivory & gold candles — absolute warmth</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#2C4A2C"></div>Sage, rosemary, olive — Italian scent</div>
+            </div>
+            <div class="pc-col">
+              <div class="pc-col-title">Your outfits</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#FAF7F0"></div>Love: champagne gown (not pure white)</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#6B1A2A"></div>Dramatic bouquet: burgundy & cream</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#1A1A18"></div>Jerry: black tux, burgundy pocket square</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#C8A96E"></div>Champagne & gold gele — ultra sophisticated</div>
+            </div>
+          </div>
+          <div class="pc-verdict"><strong>Why it works:</strong> This is the quiet luxury palette — the one that makes people say "what class" not "what colours." Deep burgundy is one of the strongest 2027 trends. Photographs extraordinarily by candlelight.</div>
+          <button class="vote-btn" onclick="event.stopPropagation(); selectPalette('p4','Champagne & Borgogna')">
+            <span class="vote-icon" id="icon-p4">🤍</span>
+            <span id="label-p4">This is the one</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- P5: BLU ADRIATICO -->
+      <div class="palette-card" id="p5" onclick="selectPalette('p5','Blu Adriatico')">
+        <div class="pc-swatches">
+          <div class="pc-sw" style="background:#0A2A4A; flex:1.5"></div>
+          <div class="pc-sw" style="background:#C8A96E"></div>
+          <div class="pc-sw" style="background:#FAF7F0; border-right:0.5px solid #D4D0C8"></div>
+          <div class="pc-sw" style="background:#4A7A8A"></div>
+          <div class="pc-sw" style="background:#8B4513"></div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-num">Option 05</div>
+          <div class="pc-name">Blu Adriatico</div>
+          <div class="pc-sub">Born from the sea — if you choose SeeBay, this palette is almost mandatory</div>
+          <div class="pc-grid">
+            <div class="pc-col">
+              <div class="pc-col-title">Decor & venue</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#0A2A4A"></div>Navy tablecloths, gold cutlery — marine elegance</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#FAF7F0"></div>Pure white florals — anemones, calla lilies</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#4A7A8A"></div>Blown glass aquamarine centrepieces</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#C8A96E"></div>Gold candles, sand, shells — Conero</div>
+            </div>
+            <div class="pc-col">
+              <div class="pc-col-title">Your outfits</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#FAF7F0"></div>Love: white gown, long veil in the breeze</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#C8A96E"></div>Gold jewellery, white flowers in hair</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#0A2A4A"></div>Jerry: navy tuxedo — not the usual black</div>
+              <div class="pc-item"><div class="pc-dot" style="background:#8B4513"></div>Nigerian copper details — tie bar</div>
+            </div>
+          </div>
+          <div class="pc-verdict"><strong>Why it works:</strong> This palette was written for SeeBay — the sea of Portonovo, the white cliffs, the Adriatic sunset. Coastal blue is the big 2027 novelty for Mediterranean weddings — sophisticated, not nautical. If you choose SeeBay, this palette chooses itself.</div>
+          <button class="vote-btn" onclick="event.stopPropagation(); selectPalette('p5','Blu Adriatico')">
+            <span class="vote-icon" id="icon-p5">🤍</span>
+            <span id="label-p5">This is the one</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <em>Love & Jerry · 7 July 2027 · Italy</em>
+  <p>Updated 27 June 2026 &nbsp;·&nbsp; All venue figures estimated pending final quotes &nbsp;·&nbsp; Contingency €2,700 held back<br>Built with love by Jerry & Claude 🤍</p>
+</div>
+
+<script>
+  let currentSelected = null;
+
+  // Persist vote in localStorage
+  function selectPalette(id, name) {
+    // Deselect all
+    document.querySelectorAll('.palette-card').forEach(c => {
+      c.classList.remove('selected');
+    });
+    ['p1','p2','p3','p4','p5'].forEach(pid => {
+      document.getElementById('icon-' + pid).textContent = '🤍';
+      document.getElementById('label-' + pid).textContent = 'This is the one';
+    });
+
+    // Select chosen
+    const card = document.getElementById(id);
+    card.classList.add('selected');
+    document.getElementById('icon-' + id).textContent = '❤️';
+    document.getElementById('label-' + id).textContent = 'Selected! ❤️';
+
+    // Banner
+    const banner = document.getElementById('selectedBanner');
+    document.getElementById('selectedName').textContent = name;
+    banner.classList.add('show');
+
+    // Scroll banner into view
+    banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Save
+    localStorage.setItem('weddingPalette', JSON.stringify({ id, name }));
+    currentSelected = id;
+  }
+
+  // Restore on load
+  window.addEventListener('load', () => {
+    const saved = localStorage.getItem('weddingPalette');
+    if (saved) {
+      const { id, name } = JSON.parse(saved);
+      selectPalette(id, name);
+    }
+  });
+</script>
+
+</body>
+</html>
